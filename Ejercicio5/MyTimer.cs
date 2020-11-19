@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace Ejercicio5
 {
@@ -14,9 +14,13 @@ namespace Ejercicio5
 
     class MyTimer
     {
+
+        static bool flag = false; // Creo y declaro el flag
+        static readonly object l = new object(); // Creo el objeto del lock, porque los hilos están usando recursos iguales
+
         public delegate void Delegado();
 
-        int intervalo;
+        public int intervalo;
 
         public void run()
         {
@@ -30,7 +34,9 @@ namespace Ejercicio5
 
         public MyTimer()
         {
-
+            Delegado op = accion;
+            Thread hilo = new Thread(op);
+            hilo.Start();
         }
     }
 }
