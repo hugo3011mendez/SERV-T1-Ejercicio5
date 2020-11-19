@@ -23,16 +23,16 @@ namespace Ejercicio5
         public int intervalo;
 
         static bool parar = false;
-        public void run()
+        public void run(Delegado accion)
         {
-            Thread.Sleep(intervalo);
             while (!parar)
             {
-
+                Thread.Sleep(intervalo);
+                accion();
             }
         }
 
-        public void pause()
+        public void pause(Delegado accion)
         {
             parar = true;
         }
@@ -40,7 +40,7 @@ namespace Ejercicio5
         public MyTimer(Delegado accion)
         {
             Thread hilo = new Thread(pause); // Así empie en espera
-            hilo.Start();
+            hilo.Start(accion);
         }
     }
 }
