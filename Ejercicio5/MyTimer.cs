@@ -22,14 +22,19 @@ namespace Ejercicio5
 
         public int intervalo;
 
+        static bool parar = false;
         public void run()
         {
+            Thread.Sleep(intervalo);
+            while (!parar)
+            {
 
+            }
         }
 
         public void pause()
         {
-
+            parar = true;
         }
 
         public MyTimer(Delegado accion)
