@@ -35,7 +35,7 @@ namespace Ejercicio5
         Delegado accion = Program.increment;
         public MyTimer(Delegado accion)
         {
-            Thread hilo = new Thread(accion);
+            Thread hilo = new Thread(pause); // Así entra en espera
             hilo.Start();
         }
     }
