@@ -12,13 +12,13 @@ namespace Ejercicio5
     // • Tendrá un método run el cual inicia la ejecución de la función cada Intervalo ms.
     // • Tendrá un método pause que pausa la ejecución.
 
+    public delegate void Delegado();
     class MyTimer
     {
 
         static bool flag = false; // Creo y declaro el flag
         static readonly object l = new object(); // Creo el objeto del lock, porque los hilos están usando recursos iguales
 
-        public delegate void Delegado();
 
         public int intervalo;
 
@@ -32,10 +32,10 @@ namespace Ejercicio5
 
         }
 
-        public MyTimer()
+        Delegado accion = Program.increment;
+        public MyTimer(Delegado accion)
         {
-            Delegado op = accion;
-            Thread hilo = new Thread(op);
+            Thread hilo = new Thread(accion);
             hilo.Start();
         }
     }

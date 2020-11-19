@@ -9,8 +9,7 @@ namespace Ejercicio5
     class Program
     {
         static int counter = 0;
-
-        static void increment()
+        public static void increment()
         {
             counter++;
             Console.WriteLine(counter);
