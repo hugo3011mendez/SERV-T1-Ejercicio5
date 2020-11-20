@@ -29,7 +29,8 @@ namespace Ejercicio5
         {
             lock (l)
             {
-
+                Monitor.Pulse(l);
+                Thread.Sleep(intervalo);
             }
         }
 
@@ -47,6 +48,8 @@ namespace Ejercicio5
 
             Thread hilo = new Thread(accion);
             hilo.Start();
+
+            this.pause();
         }
     }
 }
