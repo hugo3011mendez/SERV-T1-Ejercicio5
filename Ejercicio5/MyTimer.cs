@@ -41,15 +41,20 @@ namespace Ejercicio5
                 Monitor.Wait(l);
             }
         }
+        static void funcionHilo()
+        {
+
+        }
 
         public MyTimer(Delegado nuevaAccion)
         {
             this.accion = nuevaAccion;
 
-            Thread hilo = new Thread(accion);
+            Thread hilo = new Thread(funcionHilo);
             hilo.Start();
 
             this.pause();
         }
+
     }
 }
