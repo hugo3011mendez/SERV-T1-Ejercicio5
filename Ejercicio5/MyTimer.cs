@@ -22,33 +22,31 @@ namespace Ejercicio5
 
         public int intervalo;
 
+        Delegado accion;
+
         static bool parar = true;
-        public void run(Delegado accion)
+        public void run()
         {
-            while (!parar)
+            lock (l)
             {
-                lock (l)
-                {
-                    if (!parar)
-                    {
-                        Thread.Sleep(intervalo);
-                        accion();
-                    }
-                }
+
             }
-
-            parar = false;
         }
 
-        public void pause(Delegado accion)
+        public void pause()
         {
-            parar = true;
+            lock (l)
+            {
+                Monitor.Wait(l);
+            }
         }
 
-        public MyTimer(Delegado accion)
+        public MyTimer(Delegado nuevaAccion)
         {
-            Thread hilo = new Thread(run);
-            hilo.Start(accion);
+            this.accion = nuevaAccion;
+
+            Thread hilo = new Thread(accion);
+            hilo.Start();
         }
     }
 }
